@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Message Page</title>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+  <div class="wrapper">
+      <h1>Message Page</h1>
+      <div class="formBox">
+          <form action="#" th:action="@{/msg}" th:object="${message}" method="post">
+              Auteur:
+              <input type="text" th:field="*{auteur}">
+              Message:
+              <input type="text" th:field="*{message}">
+              <input type="submit" value="Send">
+          </form>
+      </div>
+
+      <div class="msgBox" th:each="msg:${msglist}">
+          <p class="auteur" th:text="${msg.auteur}"></p>
+          <p class="timeStamp" th:text="${#temporals.format(msg.timeStamp,'dd-MM-yyyy  HH:mm')}"></p>
+          <p class="message" th:text="${msg.messages}"></p>
+
+      </div>
+  </div>
+
+</body>
+</html>
